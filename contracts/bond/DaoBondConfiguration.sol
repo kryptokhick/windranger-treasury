@@ -15,8 +15,6 @@ abstract contract DaoBondConfiguration is DaoBondCollateralWhitelist, Dao {
 
     mapping(uint256 => DaoBondConfig) private _daoBondConfig;
 
-    // uint256 private _daoConfigLastId;
-
     /**
      * @notice The _msgSender() is given membership of all roles, to allow granting and future renouncing after others
      *      have been setup.
@@ -33,7 +31,7 @@ abstract contract DaoBondConfiguration is DaoBondCollateralWhitelist, Dao {
         uint256 daoId = _daoConfiguration(erc20CapableTreasury);
 
         DaoBondConfig storage config = _daoBondConfig[daoId];
-        config.dao.treasury = erc20CapableTreasury;
+        config.dao.treasury = erc20CapableTreasury; // is this a double sstore? Are we not setting this in _daoConfiguration
 
         return daoId;
     }
